@@ -10,15 +10,19 @@ export const useDarkMode = () => {
     
 
     useEffect(() => {
-        function addClass() {
-        const dark = document.getElementByTagName('body')
-        dark.classList.add('dark-mode')  
+    
+        if (value === true) {
+            document.body.classList.add('dark-mode')
+        } else {
+            document.body.classList.remove('dark-mode')
         }
-        
-        if (useLocalStorage === true) {
-            return addClass()
-        }
-    }, []) 
+    }, [value])
+
+    const toggleDark = (e) => {
+        e.preventDefault();
+
+        return value ? setValue(false) : value(true)
+    }
 
     return [value, setValue]
 }
